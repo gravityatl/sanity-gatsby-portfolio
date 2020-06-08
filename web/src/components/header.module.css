@@ -4,6 +4,7 @@
 .root {
   position: relative;
   z-index: 100;
+  background-color: rgba(90, 102, 124, 0.35);
 }
 
 .wrapper {

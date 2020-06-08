@@ -18,6 +18,10 @@ export const query = graphql`
       description
       keywords
     }
+    homesettings: sanityHomeSettings {
+      headline
+      _rawBody
+    }
     projects: allSanitySampleProject(
       limit: 6
       sort: {fields: [publishedAt], order: DESC}
@@ -71,6 +75,7 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site
+  const homesettings = (data || {}).homesettings
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
       .filter(filterOutDocsWithoutSlugs)
@@ -88,7 +93,7 @@ const IndexPage = props => {
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
       <h1 hidden>Welcome to {site.title}</h1>
-       
+      <h2>{homesettings.headline}</h2>
         {projectNodes && (
           <ProjectPreviewGrid
             title='Latest projects'
